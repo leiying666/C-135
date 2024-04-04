@@ -1,0 +1,13 @@
+Status函数
+Status为函数类型（当return值为函数结果状态时用）
+它并不是C语言中原带的关键字，而是自己定义的
+如，typedef int Status; 或 typedef char Status; 等
+
+例如，（ps：0表示成功，-1表示失败）
+
+typedef int Status;
+Status range(int n){
+if(n>=30&&n<=100)
+return 0;
+else
+return -1;}
