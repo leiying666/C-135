@@ -1,0 +1,50 @@
+#define _CRT_SECURE_NO_WARNINGS 1
+#include<string.h>
+#include<errno.h>
+#include<stdlib.h>
+#include<math.h>
+#include<stdio.h>
+
+typedef struct S
+{
+	int data;
+	struct S* next;
+}S, * Plink;
+void LinkInsert(Plink H, int m)
+{
+	Plink s= (Plink)malloc(sizeof(S));
+	Plink p = H->next;
+	while (p->next!=NULL&&p->next->data < m)
+	{
+		p = p->next;
+	}
+	s->data = m;
+	s->next = p->next;
+	p->next = s;
+}
+int main()
+{
+	int n, m,i;
+	Plink H = (Plink)malloc(sizeof(S));
+	H->next = NULL;
+	Plink p=H;
+	scanf("%d", &n);
+	for (i = 0; i < n; i++)
+	{
+		scanf("%d", &m);
+		Plink r= (Plink)malloc(sizeof(S));
+		p->next = r;
+		r->data = m;
+		r->next = NULL;
+		p = r;
+	}
+	p = H->next;
+	scanf("%d", &m);
+	LinkInsert(H,m);
+	for (i = 0; i < n + 1; i++)
+	{
+		printf("%d ", p->data);
+		p = p->next;
+	}
+	return 0;
+}
